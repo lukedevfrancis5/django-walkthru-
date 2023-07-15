@@ -5,12 +5,16 @@ from .models import Book
 # Create your views here.
 
 class Another(View):
-    books = Book.objects.all()
+    book = Book.objects.get(id=1)
 
-    book_num = f"There are {len(books)} books in the database"
+    output = f"We have {book.title} book in the database with id {book.id}<br>"
+
+
+    #for book in books:
+    #    output += f"We have {book.title} book in the database with id {book.id}<br>"
 
     def get(self, request):
-        return HttpResponse(self.book_num)
+        return HttpResponse(self.output)
 
 def first(request):
     return HttpResponse('First message from views')
